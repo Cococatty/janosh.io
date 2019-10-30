@@ -1,6 +1,5 @@
 export const getRange = (min, max, step = 1) => {
-  if (typeof min !== `number`)
-    console.error(`Range only supports numeric types.`)
+  if (typeof min !== `number`) console.error(`Range only supports numeric types.`)
   const A = [min]
   while (min + step <= max) {
     A[A.length] = min += step
@@ -14,8 +13,7 @@ export const multivariateNormalDiag = (mu, sigma) => {
   const Z = ((2 * Math.PI) ** mu.length * sigma.reduce((a, b) => a * b)) ** -0.5
   return x => {
     const diff = x.map((xi, idx) => xi - mu[idx])
-    const exp =
-      -0.5 * sigma.reduce((acc, si, idx) => acc + diff[idx] ** 2 / si, 0)
+    const exp = -0.5 * sigma.reduce((acc, si, idx) => acc + diff[idx] ** 2 / si, 0)
     return Z * Math.exp(exp)
   }
 }
